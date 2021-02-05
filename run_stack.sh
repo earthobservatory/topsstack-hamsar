@@ -3,6 +3,11 @@
 source $HOME/.bash_profile
 #source /opt/isce2/isce_env.sh
 
+
+conda activate
+export ISCE_STACK=/opt/conda/share/isce2/topsStack/stackSentinel.py
+export PATH=$PATH:$ISCE_HOME/bin:$ISCE_HOME/applications:$ISCE_STACK
+
 # Saving the processing start time for .met.json file
 export PROCESSING_START=$(date +%FT%T)
 
@@ -18,8 +23,8 @@ echo "Coords:"
 echo $MINLAT $MAXLAT $MINLON $MAXLON $MINLAT_LO $MAXLAT_HI $MINLON_LO $MAXLON_HI
 
 # Prep SLCs
-#mkdir zip
-#mv S1*/*.zip zip
+mkdir zip
+mv S1*/*.zip zip
 
 # Get DEM
 echo dem.py -a stitch -b $MINLAT_LO $MAXLAT_HI $MINLON_LO $MAXLON_HI -r -s 1 -c -f
